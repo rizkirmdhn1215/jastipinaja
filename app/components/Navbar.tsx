@@ -25,14 +25,12 @@ export default function Navbar() {
   return (
     <header className="flex h-16 w-full items-center justify-between bg-[#F04B4B] px-4 md:px-6">
       <Link href="/" className="flex items-center gap-2">
-        <img
-          alt="Jastipinja Logo"
-          className="h-6 w-auto"
+        <Image
           src="/images/logo.png"
-          style={{
-            aspectRatio: "100/24",
-            objectFit: "contain",
-          }}
+          alt="Jastipinja Logo"
+          width={150}
+          height={40}
+          priority
         />
       </Link>
       <NavigationMenu className="hidden md:flex">
