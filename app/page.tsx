@@ -195,7 +195,7 @@ export default function Home() {
               transition={{ duration: 0.8 }}
               className="order-2 md:order-1 flex justify-center"
             >
-              <Image src="/images/illus.png" alt="Shopping Illustration" width={400} height={400} className="h-auto" />
+              <Image src="/images/Illus.png" alt="Shopping Illustration" width={400} height={400} className="h-auto" />
             </motion.div>
 
             {/* Right side - Content */}
