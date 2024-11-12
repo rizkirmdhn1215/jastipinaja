@@ -20,18 +20,17 @@ const staggerChildren = {
   }
 };
 
-// Add these new animation variants
-const slideIn = {
-  initial: { x: -60, opacity: 0 },
-  animate: { x: 0, opacity: 1 },
-  transition: { duration: 0.6 }
-};
-
 const scaleIn = {
   initial: { scale: 0.8, opacity: 0 },
   animate: { scale: 1, opacity: 1 },
   transition: { duration: 0.6 }
 };
+
+interface FooterColumn {
+  title: string;
+  links?: string[];
+  content?: string | string[] | JSX.Element;
+}
 
 export default function Home() {
   return (
@@ -629,7 +628,7 @@ export default function Home() {
                   </div>
                 )
               }
-            ].map((column, index) => (
+            ].map((column: FooterColumn) => (
               <motion.div
                 key={column.title}
                 variants={fadeIn}
