@@ -8,9 +8,8 @@ import { motion } from 'framer-motion';
 // Add these animation variants outside your component
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 }
-};
+  animate: { opacity: 1, y: 0 }
+} as const;
 
 const staggerChildren = {
   animate: {
@@ -22,9 +21,8 @@ const staggerChildren = {
 
 const scaleIn = {
   initial: { scale: 0.8, opacity: 0 },
-  animate: { scale: 1, opacity: 1 },
-  transition: { duration: 0.6 }
-};
+  animate: { scale: 1, opacity: 1 }
+} as const;
 
 interface FooterColumn {
   title: string;
@@ -35,38 +33,50 @@ interface FooterColumn {
 export default function Home() {
   return (
     <main className="relative min-h-screen overflow-x-hidden">
-      {/* Half-circle gradient effect - softer edges */}
-      <div 
-        className="absolute left-0 top-20 h-[250px] w-[125px] z-10"
-        style={{
-          background: 'radial-gradient(circle at -25% 50%, #FFDCDC 0%, rgba(255,220,220,0.9) 30%, rgba(255,220,220,0.7) 50%, transparent 70%)',
-          pointerEvents: 'none',
-          mixBlendMode: 'multiply'
-        }}
-      />
-      
-      {/* Indonesia map background */}
-      <div className="absolute inset-0 -z-20 -mt-20">
-        <Image
-          src="/images/indonesia-map.png"
-          alt="Indonesia Map Background"
-          fill
-          priority
-          className="object-cover opacity-75"
+      {/* Navbar - Added back at the top */}
+      <Navbar />
+
+      {/* First Section with Indonesia Map */}
+      <section className="relative w-full min-h-[calc(100vh-64px)] flex items-center">
+        {/* Indonesia map background - Significantly enhanced visibility */}
+        <div className="absolute inset-0 -z-20">
+          <Image
+            src="/images/indonesia-map.png"
+            alt="Indonesia Map Background"
+            fill
+            priority
+            className="object-cover opacity-100"
+            style={{
+              filter: 'contrast(1.4) brightness(1.4) saturate(1.6)',
+              objectPosition: 'center',
+              transform: 'scale(0.7) translateY(-40px)',
+            }}
+          />
+        </div>
+
+        {/* Half-circle gradient effect - Reduced opacity */}
+        <div 
+          className="absolute left-0 top-20 h-[250px] w-[125px] z-10"
           style={{
-            filter: 'contrast(2.2) brightness(1.5) saturate(1.4)',
-            objectPosition: 'center',
-            transform: 'scale(0.4) translateY(-100px)',
+            background: 'radial-gradient(circle at -25% 50%, #FFDCDC 0%, rgba(255,220,220,0.5) 30%, rgba(255,220,220,0.3) 50%, transparent 70%)',
+            pointerEvents: 'none',
+            mixBlendMode: 'soft-light'
           }}
         />
-      </div>
-      
-      <Navbar />
-      <section className="relative w-full min-h-[calc(100vh-64px)] flex items-center"
-        style={{
-          background: 'linear-gradient(to top, rgba(239, 68, 68, 0.4) 0%, rgba(239, 68, 68, 0.1) 40%, #FFFFFF 60%)'
-        }}
-      >
+
+        {/* Gradient overlay - Lighter overlay to show more map */}
+        <div className="absolute inset-0" style={{
+          background: 'linear-gradient(to top, rgba(239, 68, 68, 0.2) 0%, rgba(239, 68, 68, 0.05) 40%, rgba(255, 255, 255, 0.6) 60%)',
+          mixBlendMode: 'overlay'
+        }} />
+        
+        {/* Optional: Add a subtle shadow overlay to make text more readable while keeping map visible */}
+        <div className="absolute inset-0" style={{
+          background: 'radial-gradient(circle at center, transparent 0%, rgba(255, 255, 255, 0.2) 100%)',
+          mixBlendMode: 'overlay'
+        }} />
+        
+        {/* Content for first section */}
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -81,7 +91,13 @@ export default function Home() {
               animate="animate"
               className="md:w-[30%] space-y-4"
             >
-              <motion.div variants={fadeIn} className="space-y-2">
+              <motion.div 
+                variants={fadeIn}
+                initial="initial"
+                animate="animate"
+                transition={{ duration: 0.5 }}
+                className="space-y-2"
+              >
                 <h1 className="text-3xl md:text-4xl font-bold flex items-center gap-x-2 whitespace-nowrap">
                   <span className="text-[#9B2C2C]">Semua</span>
                   <span className="text-[#F04B4B]">Barang</span>
@@ -96,12 +112,24 @@ export default function Home() {
                 </h1>
               </motion.div>
               
-              <motion.p variants={fadeIn} className="text-gray-600 text-sm max-w-lg">
+              <motion.p 
+                variants={fadeIn}
+                initial="initial"
+                animate="animate"
+                transition={{ duration: 0.5 }}
+                className="text-gray-600 text-sm max-w-lg"
+              >
                 Jastipinaja membawa produk-produk yang kamu inginkan dari berbagai
                 daerah langsung ke depan pintu kamu!
               </motion.p>
               
-              <motion.div variants={fadeIn} className="flex items-center gap-4 pt-2">
+              <motion.div 
+                variants={fadeIn}
+                initial="initial"
+                animate="animate"
+                transition={{ duration: 0.5 }}
+                className="flex items-center gap-4 pt-2"
+              >
                 <Image
                   src="/images/playstore.png"
                   alt="Get it on Google Play"
@@ -178,13 +206,25 @@ export default function Home() {
               viewport={{ once: true }}
               className="order-1 md:order-2 text-white"
             >
-              <motion.h2 variants={fadeIn} className="text-3xl font-bold mb-8">
+              <motion.h2 
+                variants={fadeIn}
+                initial="initial"
+                whileInView="animate"
+                transition={{ duration: 0.5 }}
+                className="text-3xl font-bold mb-8"
+              >
                 Kenapa belanja di JASTIPINAJA?
               </motion.h2>
               
               <div className="space-y-6">
                 {/* Feature items */}
-                <motion.div variants={fadeIn} className="flex items-start gap-4">
+                <motion.div 
+                  variants={fadeIn}
+                  initial="initial"
+                  whileInView="animate"
+                  transition={{ duration: 0.5 }}
+                  className="flex items-start gap-4"
+                >
                   <div className="flex-shrink-0">
                     <Image
                       src="/images/mobil.png"  // Add your icon
@@ -200,7 +240,13 @@ export default function Home() {
                   </div>
                 </motion.div>
 
-                <motion.div variants={fadeIn} className="flex items-start gap-4">
+                <motion.div 
+                  variants={fadeIn}
+                  initial="initial"
+                  whileInView="animate"
+                  transition={{ duration: 0.5 }}
+                  className="flex items-start gap-4"
+                >
                   <div className="flex-shrink-0">
                     <Image
                       src="/images/secure.png"  // Add your icon
@@ -216,7 +262,13 @@ export default function Home() {
                   </div>
                 </motion.div>
 
-                <motion.div variants={fadeIn} className="flex items-start gap-4">
+                <motion.div 
+                  variants={fadeIn}
+                  initial="initial"
+                  whileInView="animate"
+                  transition={{ duration: 0.5 }}
+                  className="flex items-start gap-4"
+                >
                   <div className="flex-shrink-0">
                     <Image
                       src="/images/cube.png"  // Add your icon
@@ -232,7 +284,13 @@ export default function Home() {
                   </div>
                 </motion.div>
 
-                <motion.div variants={fadeIn} className="flex items-start gap-4">
+                <motion.div 
+                  variants={fadeIn}
+                  initial="initial"
+                  whileInView="animate"
+                  transition={{ duration: 0.5 }}
+                  className="flex items-start gap-4"
+                >
                   <div className="flex-shrink-0">
                     <Image
                       src="/images/store.png"  // Add your icon
@@ -252,7 +310,7 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* New Pink Gradient Section */}
+      {/* Pink Gradient Section */}
       <section className="w-full min-h-screen relative overflow-hidden">
         <div 
           className="absolute inset-0"
@@ -262,8 +320,20 @@ export default function Home() {
         />
         <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 lg:px-16 py-12">
           {/* Top Content */}
-          <div className="flex flex-col md:flex-row items-center justify-between mb-12">
-            <div className="md:w-1/2">
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col md:flex-row items-center justify-between mb-12"
+          >
+            <motion.div 
+              initial={{ x: -100, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="md:w-1/2"
+            >
               <Image
                 src="/images/gojek.png"
                 alt="Delivery Man"
@@ -271,8 +341,14 @@ export default function Home() {
                 height={250}
                 className="object-contain"
               />
-            </div>
-            <div className="md:w-1/2 space-y-3">
+            </motion.div>
+            <motion.div 
+              initial={{ x: 100, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="md:w-1/2 space-y-3"
+            >
               <h2 className="text-3xl font-bold text-[#9B2C2C]">
                 Diantar <span className="text-[#F04B4B]">Hari ini</span> atau <span className="text-[#F04B4B]">Besok</span>?
               </h2>
@@ -280,20 +356,38 @@ export default function Home() {
               <p className="text-[#9B2C2C] text-sm">
                 Pesan belanjaan lebih praktis karena pilih waktu pengiriman sesuai yang kamu mau! Nikmati pengalaman belanja online mudah dan fleksibel dari JastipinAja
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Bottom Content */}
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="md:w-1/2 space-y-3">
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex flex-col md:flex-row items-center justify-between"
+          >
+            <motion.div 
+              initial={{ x: -100, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="md:w-1/2 space-y-3"
+            >
               <h2 className="text-3xl font-bold text-[#9B2C2C]">
                 Pesanan Dibelanjakan <span className="text-[#F04B4B]">Jastiper</span> Terlatih
               </h2>
               <p className="text-[#9B2C2C] text-sm">
                 Jastiper adalah Shopper terlatih yang berpengalaman dan membelanjakan dan mengantar pesananmu sampai ke rumah. Jastiper memiliki sertifikasi dan standar operasional yang sesuai standar tinggi pelayanan
               </p>
-            </div>
-            <div className="md:w-1/2 flex justify-end">
+            </motion.div>
+            <motion.div 
+              initial={{ x: 100, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 1 }}
+              className="md:w-1/2 flex justify-end"
+            >
               <Image
                 src="/images/ibuk.png"
                 alt="Shopping Woman"
@@ -301,24 +395,8 @@ export default function Home() {
                 height={250}
                 className="object-contain"
               />
-            </div>
-          </div>
-
-          {/* Decorative Elements */}
-          <div className="absolute top-0 right-[-40px]">
-            <div className="w-40 h-20 flex gap-4">
-              {[...Array(10)].map((_, i) => (
-                <div key={i} className="w-1 h-8 bg-[#F04B4B] transform rotate-45" />
-              ))}
-            </div>
-          </div>
-          <div className="absolute bottom-[-16px] left-[-40px] translate-y-[20px]">
-            <div className="w-40 h-20 flex gap-4">
-              {[...Array(10)].map((_, i) => (
-                <div key={i} className="w-1 h-8 bg-[#F04B4B] transform -rotate-45" />
-              ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
@@ -352,6 +430,7 @@ export default function Home() {
             {/* Each step */}
             <motion.div
               variants={scaleIn}
+              transition={{ duration: 0.6 }}
               className="bg-white rounded-2xl p-6 relative"
             >
               <div className="absolute left-6">
@@ -379,6 +458,7 @@ export default function Home() {
             {/* Step 2 */}
             <motion.div
               variants={scaleIn}
+              transition={{ duration: 0.6 }}
               className="bg-white rounded-2xl p-6 relative"
             >
               <div className="absolute  left-6">
@@ -406,6 +486,7 @@ export default function Home() {
             {/* Step 3 */}
             <motion.div
               variants={scaleIn}
+              transition={{ duration: 0.6 }}
               className="bg-white rounded-2xl p-6 relative"
             >
               <div className="absolute left-6">
@@ -439,90 +520,103 @@ export default function Home() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="w-full relative bg-[#F04B4B] py-16"
+        className="w-full relative py-16"
+        style={{
+          background: 'linear-gradient(to bottom, #FFFFFF 0%, #FFF1F1 30%, #FFE4E4 60%, #FFD6D6 100%)'
+        }}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16">
           <motion.div 
-            variants={staggerChildren}
-            initial="initial"
-            whileInView="animate"
+            initial={{ scale: 0.9, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
             viewport={{ once: true }}
-            className="flex flex-col md:flex-row items-center justify-between gap-12"
+            transition={{ duration: 0.6 }}
+            className="bg-[#FF7B7B] rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden"
           >
             {/* Left side content */}
             <motion.div 
-              variants={fadeIn}
-              className="md:w-1/2 space-y-6"
+              initial={{ x: -50, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="space-y-6 max-w-xl z-10"
             >
               <h3 className="text-2xl font-bold text-white">
                 Buktikan belanja jadi lebih hemat dan praktis dengan JASTIPINAJA
               </h3>
               <motion.div 
-                variants={staggerChildren}
+                initial={{ y: 20, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
                 className="flex gap-4"
               >
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Image
-                    src="/images/playstore.png"
-                    alt="Get it on Google Play"
-                    width={130}
-                    height={38}
-                    className="cursor-pointer"
-                  />
-                </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Image
-                    src="/images/appstore.png"
-                    alt="Download on the App Store"
-                    width={130}
-                    height={38}
-                    className="cursor-pointer"
-                  />
-                </motion.div>
+                <Image
+                  src="/images/playstore.png"
+                  alt="Get it on Google Play"
+                  width={130}
+                  height={38}
+                  className="cursor-pointer"
+                />
+                <Image
+                  src="/images/appstore.png"
+                  alt="Download on the App Store"
+                  width={130}
+                  height={38}
+                  className="cursor-pointer"
+                />
               </motion.div>
             </motion.div>
 
             {/* Right side image */}
             <motion.div 
-              variants={fadeIn}
-              className="md:w-1/2 relative"
+              initial={{ x: 50, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="relative z-10"
             >
-              <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="absolute left-12 top-1/2 -translate-y-[150%]"
-              >
-                <Image
-                  src="/images/bintang.png"
-                  alt="Triangle Ornament"
-                  width={100}
-                  height={120}
-                  className="object-contain"
-                />
-              </motion.div>
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-              >
-                <Image
-                  src="/images/shoppinglady.png"
-                  alt="Shopping Banner"
-                  width={250}
-                  height={250}
-                  className="object-contain relative z-10"
-                />
-              </motion.div>
+              <Image
+                src="/images/shoppinglady.png"
+                alt="Shopping Banner"
+                width={300}
+                height={300}
+                className="object-contain"
+              />
             </motion.div>
+
+            {/* Decorative elements */}
+            <motion.div 
+              initial={{ rotate: -180, opacity: 0 }}
+              whileInView={{ rotate: 0, opacity: 0.5 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="absolute top-4 left-[30%]"
+            >
+              <Image
+                src="/images/bintang.png"
+                alt="Stars"
+                width={60}
+                height={60}
+                className="opacity-50"
+              />
+            </motion.div>
+          </motion.div>
+
+          {/* Additional text below the card */}
+          <motion.div 
+            initial={{ y: 30, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            className="mt-8 space-y-3"
+          >
+            <h4 className="text-[#F04B4B] text-xl font-semibold">
+              Belanja Barang Dari Berbagai Daerah Dengan <span className="text-[#9B2C2C]">JASTIPINAJA</span> Dengan Mudah dan Hemat
+            </h4>
+            <p className="text-gray-600 text-base max-w-3xl line-clamp-2">
+              Semua pesanan yang Anda titipkan adalah tangung jawai kami untuk dapat dikirim di tempat Anda berada menjadi lebih mudah dan menguntungkan. Kami berkomitmen untuk memberikan pengalaman belanja terbaik dan memberikan pelayanan yang baik dan aman.
+            </p>
           </motion.div>
         </div>
       </motion.section>
