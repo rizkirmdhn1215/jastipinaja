@@ -27,13 +27,13 @@ export function DotOrnament() {
 
   return (
     <div
-      className="grid aspect-square w-[250px]"
+      className="grid aspect-square w-[150px]"
       style={{
         gridTemplateColumns: 'repeat(11, 1fr)',
         gap: '8px',
         position: 'absolute',
-        right: '-70px',
-        bottom: '-30px',
+        right: '-5px',
+        bottom: '-5px',
         transform: 'translate(20%, 20%)',
         zIndex: -10,
       }}
