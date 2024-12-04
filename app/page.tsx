@@ -38,8 +38,15 @@ export default function Home() {
 
       {/* First Section with Indonesia Map */}
       <section className="relative w-full min-h-[calc(100vh-64px)] flex items-center">
+      
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(to bottom, #FFFFFF 0%, #FFF1F1 30%, #FFE4E4 60%, #FFD6D6 100%)'
+          }}
+        />
         {/* Indonesia map background - Significantly enhanced visibility */}
-        <div className="absolute inset-0 -z-20">
+        <div className="absolute inset-0 -z 50">
           <Image
             src="/images/indonesia-map.png"
             alt="Indonesia Map Background"
@@ -195,7 +202,7 @@ export default function Home() {
               transition={{ duration: 0.8 }}
               className="order-2 md:order-1 flex justify-center"
             >
-              <Image src="/images/Illus.png" alt="Shopping Illustration" width={400} height={400} className="h-auto" />
+              <Image src="/images/shop.png" alt="Shopping Illustration" width={400} height={400} className="h-auto" />
             </motion.div>
 
             {/* Right side - Content */}
