@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Image from 'next/image'
 import { DotOrnament } from './components/DotOrnament'
 import { motion } from 'framer-motion';
+import TestimonialCarousel from '@/components/TestimonialCarousel'
 
 // Add these animation variants outside your component
 const fadeIn = {
@@ -61,13 +62,12 @@ export default function Home() {
           />
         </div>
 
-        {/* Half-circle gradient effect - Reduced opacity */}
+        {/* Half-circle gradient effect - Adjusted blend mode and increased contrast */}
         <div 
-          className="absolute left-0 top-20 h-[250px] w-[125px] z-10"
+          className="absolute left-0 top-10 h-[250px] w-[125px] z-[999]"
           style={{
-            background: 'radial-gradient(circle at -25% 50%, #FFDCDC 0%, rgba(255,220,220,0.5) 30%, rgba(255,220,220,0.3) 50%, transparent 70%)',
+            background: 'radial-gradient(circle at -25% 50%, rgba(255,76,76,0.8) 0%, rgba(255,76,76,0.6) 30%, rgba(255,76,76,0.4) 50%, transparent 70%)',
             pointerEvents: 'none',
-            mixBlendMode: 'soft-light'
           }}
         />
 
@@ -161,11 +161,13 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="md:w-[30%] relative flex justify-end pr-12"
             >
-              {/* Dot pattern ornament */}
-              <DotOrnament />
+              {/* Dot pattern ornament - Moved to bottom right */}
+              <div className="absolute z-10 right-0 top-[105%] translate-x-8">
+                <DotOrnament />
+              </div>
 
               {/* Phone mockup */}
-              <div className="relative translate-x-12" style={{ width: '200px', height: '400px' }}>
+              <div className="relative translate-x-12 z-20" style={{ width: '200px', height: '400px' }}>
                 <div className="absolute inset-0 bg-black rounded-[2rem] border-[10px] border-black overflow-hidden">
                   <div className="relative w-full h-full bg-[#F04B4B] flex items-center justify-center">
                     <Image
@@ -316,6 +318,9 @@ export default function Home() {
           </div>
         </div>
       </motion.section>
+
+      {/* Testimonial Section */}
+      <TestimonialCarousel />
 
       {/* Pink Gradient Section */}
       <section className="w-full min-h-screen relative overflow-hidden">
@@ -622,7 +627,7 @@ export default function Home() {
               Belanja Barang Dari Berbagai Daerah Dengan <span className="text-[#9B2C2C]">JASTIPINAJA</span> Dengan Mudah dan Hemat
             </h4>
             <p className="text-gray-600 text-base max-w-3xl line-clamp-2">
-              Semua pesanan yang Anda titipkan adalah tangung jawai kami untuk dapat dikirim di tempat Anda berada menjadi lebih mudah dan menguntungkan. Kami berkomitmen untuk memberikan pengalaman belanja terbaik dan memberikan pelayanan yang baik dan aman.
+            Setiap pesanan yang Anda titipkan adalah langkah kecil menuju masa depan di mana belanja menjadi lebih mudah dan menyenangkan. Kami berkomitmen untuk mendukung pertumbuhan usaha kecil dan menengah, serta memberikan akses yang lebih luas kepada semua orang.
             </p>
           </motion.div>
         </div>
@@ -692,9 +697,9 @@ export default function Home() {
               {
                 title: 'TERHUBUNG DENGAN KAMI',
                 content: [
-                  'JASTIPINAJA TRAINING CENTER',
-                  'Mangadilan Indah 1 No.12, Suko Manunggal, Kec.',
-                  'Padang Tim., Kota Padang, Sumatera Barat 25173',
+                  'INATECHNO TRAINING CENTER',
+                  'Marapalam Indah 5 No.12, Kubu Marapalam, Kec.',
+                  'Padang Tim., Kota Padang, Sumatera Barat 25125',
                   'jastipinaja.com'
                 ]
               },
